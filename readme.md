@@ -1,0 +1,2 @@
+- Usando banco de dados mongoDb
+- Conectando via docker no servidor mongodb://172.17.0.3:27017/
