@@ -1,0 +1,33 @@
+<div class="jumbotron">
+    <h1 class="display-4">Bem-vindo ao blog com nodeJS</h1>
+    <p class="lead">Seja muito bem-vindo, este é um projeto usando nodeJS + mongoDB + bootstrap e express.
+    </p>
+    {{!-- <hr class="my-4"> --}}
+    <p>Você pode testar as funcionalidades!</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/usuarios/registro" role="button">Crie uma conta</a>
+    </p>
+</div>
+
+<hr>
+
+<h2>Postagens recentes</h2>
+
+{{#each postagens}}
+
+<div class="card">
+    <div class="card-body">
+        <h3>Título: {{titulo}}</h3>
+        <p>Descrição: {{descricao}}</p>
+        <a href="/postagem/{{slug}}"><button class="btn btn-success">Leia mais</button></a>
+        <hr>
+        <small>Categoria: {{categoria.nome}}</small>
+        <br>
+        <small>Data de publicação: {{data}}</small>
+        <hr>
+    </div>
+</div>
+
+{{else}}
+<h5>Nenhuma postagem</h5>
+{{/each}}
