@@ -17,9 +17,6 @@ const usuarios = require("./routes/usuario")
 const passport = require('passport')
 require("./config/auth")(passport)
 
-// dependendo de onde está sendo hospedado o banco - na mongoDB cloud ou na máquina local
-const db = require("./config/db")
-
 // Configurações
 
 // sessão
@@ -51,15 +48,25 @@ app.use(bodyParser.json())
 app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-//mongoose
+//mongoose conexão em https://cloud.mongodb.com/
+
+// mongoose.Promise = global.Promise
+// mongoose.connect("link do mongodbcloud").then(() => {
+//     console.log("conectado ao mongodb")
+// }).catch((err) => {
+//     console.log("Erro ao tentar conexão com o banco")
+// })
+
+//mongoose conexão em https://cloud.mongodb.com/
+
+// conexão local
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://evan:59u74oJTGR0hlIVQ@blogapp.inmyizl.mongodb.net/?retryWrites=true&w=majority").then(() => {
+mongoose.connect("mongodb://localhost//blogapp").then(() => {
     console.log("conectado ao mongodb")
 }).catch((err) => {
     console.log("Erro ao tentar conexão com o banco")
 })
 
-//comming soon
 
 // Public - arquivos estáticos
 app.use(express.static(path.join(__dirname, "public"))) //__dirname - caminho absoluto
@@ -131,7 +138,7 @@ app.use("/usuarios", usuarios)
 
 
 // Outros
-const PORT = process.env.PORT || 8089
+const PORT = 8089
 app.listen(PORT, () => {
     console.log("Servidor rodando!")
 })
